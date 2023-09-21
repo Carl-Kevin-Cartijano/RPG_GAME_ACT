@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/motivational">
+
+    <fragment
+        android:id="@+id/motivational"
+        android:name="com.example.ciscoexamples.Motivational"
+        android:label="fragment_motivational"
+        tools:layout="@layout/fragment_motivational" />
+    <fragment
+        android:id="@+id/love"
+        android:name="com.example.ciscoexamples.Love"
+        android:label="fragment_love"
+        tools:layout="@layout/fragment_love" />
+</navigation>
