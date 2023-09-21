@@ -22,15 +22,19 @@ class FavoritesActivity : AppCompatActivity() {
 
     data class QuoteWithTimestamp(val quote: String, val timestamp: Long)
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
+
 
         listView = findViewById(R.id.listView)
         deleteButton = findViewById(R.id.deleteButton)
         favoritesButton = findViewById(R.id.favoritesButton)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("MyQuotes", MODE_PRIVATE)
+        //val favoriteQuotes = sharedPreferences.getString("listView","")
 
         val quoteTypes = arrayOf("Motivational", "Funny", "Love")
 
@@ -68,7 +72,6 @@ class FavoritesActivity : AppCompatActivity() {
                 Toast.makeText(this, "No quotes available to delete.", Toast.LENGTH_SHORT).show()
             }
         }
-
         favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
     }
 
@@ -104,7 +107,12 @@ class FavoritesActivity : AppCompatActivity() {
             R.id.quoteTextView,
             favoriteQuotes.map { it.quote }
         )
+        updateFavoritesButtonState()
         listView.adapter = adapter
+    }
+    private fun updateFavoritesButtonState() {
+
+        favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
     }
 
     private fun formatTimestamp(timestamp: Long): String {

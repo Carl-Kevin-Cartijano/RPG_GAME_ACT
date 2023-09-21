@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var motivationalButton: Button
     private lateinit var funnyButton: Button
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         loveButton = findViewById(R.id.loveButton)
         favoritesButton = findViewById(R.id.favoritesButton)
 
+
         motivationalButton.setOnClickListener {
             startQuotesActivity("Motivational")
         }
@@ -29,9 +31,13 @@ class MainActivity : AppCompatActivity() {
             startQuotesActivity("Love")
         }
         favoritesButton.setOnClickListener {
+
             startFavoritesActivity()
         }
+
     }
+
+
 
     private fun startQuotesActivity(quoteType: String) {
         val intent = Intent(this, QuotesActivity::class.java)
