@@ -16,6 +16,7 @@ class FavoritesActivity : AppCompatActivity() {
 
     private lateinit var listView: ListView
     private lateinit var deleteButton: Button
+    private lateinit var favoritesButton: Button
 
     private val favoriteQuotes = mutableListOf<QuoteWithTimestamp>()
 
@@ -27,6 +28,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         listView = findViewById(R.id.listView)
         deleteButton = findViewById(R.id.deleteButton)
+        favoritesButton = findViewById(R.id.favoritesButton)
 
         val sharedPreferences: SharedPreferences = getSharedPreferences("MyQuotes", MODE_PRIVATE)
 
@@ -46,8 +48,8 @@ class FavoritesActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(
             this,
-            R.layout.list_item_with_timestamp, // Use the new layout with timestamps
-            R.id.quoteTextView, // Use the correct TextView ID for the quote text
+            R.layout.list_item_with_timestamp,
+            R.id.quoteTextView,
             favoriteQuotes.map { it.quote }
         )
 
@@ -60,12 +62,14 @@ class FavoritesActivity : AppCompatActivity() {
 
         deleteButton.setOnClickListener {
             if (favoriteQuotes.isNotEmpty()) {
-                val selectedQuote = favoriteQuotes[0] // Delete the first quote
+                val selectedQuote = favoriteQuotes[0]
                 showDeleteConfirmationDialog(selectedQuote)
             } else {
                 Toast.makeText(this, "No quotes available to delete.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
     }
 
     private fun showDeleteConfirmationDialog(quote: QuoteWithTimestamp) {
@@ -96,8 +100,8 @@ class FavoritesActivity : AppCompatActivity() {
     private fun refreshListView() {
         val adapter = ArrayAdapter(
             this,
-            R.layout.list_item_with_timestamp, // Use the new layout with timestamps
-            R.id.quoteTextView, // Use the correct TextView ID for the quote text
+            R.layout.list_item_with_timestamp,
+            R.id.quoteTextView,
             favoriteQuotes.map { it.quote }
         )
         listView.adapter = adapter
@@ -105,8 +109,9 @@ class FavoritesActivity : AppCompatActivity() {
 
     private fun formatTimestamp(timestamp: Long): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        return sdf.format(Date(timestamp))
+        return sdf.format(Date())
     }
+
 
     private fun extractQuoteType(quote: String): String {
         return when {
