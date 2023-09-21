@@ -20,7 +20,7 @@ class QuotesActivity : AppCompatActivity() {
 
         val quoteType = intent.getStringExtra("quoteType")
 
-        // Define an array of quotes for the selected quote type
+
         val quotes = when (quoteType) {
             "Motivational" -> arrayOf("When you have a dream, you've got to grab it and never let go.", "Nothing is impossible. The word itself says 'I'm possible!'", "There is nothing impossible to they who will try.")
             "Funny" -> arrayOf("There is no sunrise so beautiful that it is worth waking me up to see it.", "Life is short. Drive fast and leave a sexy corpse. That's one of my mottos.", "I always cook with wine. Sometimes I even add it to the food.")
@@ -28,11 +28,11 @@ class QuotesActivity : AppCompatActivity() {
             else -> arrayOf()
         }
 
-        // Randomly select a quote from the array
+
         val randomIndex = Random.nextInt(quotes.size)
         val randomQuote = quotes[randomIndex]
 
-        // Display the random quote
+
         quoteTextView.text = randomQuote
 
         saveButton.setOnClickListener {

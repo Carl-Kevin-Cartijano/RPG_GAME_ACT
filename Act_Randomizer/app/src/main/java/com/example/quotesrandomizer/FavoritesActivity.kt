@@ -23,10 +23,10 @@ class FavoritesActivity : AppCompatActivity() {
         listView = findViewById(R.id.listView)
         deleteButton = findViewById(R.id.deleteButton)
 
-        // Retrieve saved quotes from SharedPreferences
+
         val sharedPreferences: SharedPreferences = getSharedPreferences("MyQuotes", MODE_PRIVATE)
 
-        // Replace "Motivational", "Funny", and "Love" with the quote types you have
+
         val quoteTypes = arrayOf("Motivational", "Funny", "Love")
 
         for (quoteType in quoteTypes) {
@@ -37,20 +37,20 @@ class FavoritesActivity : AppCompatActivity() {
             }
         }
 
-        // Create an ArrayAdapter to display the saved quotes in a ListView
+
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, favoriteQuotes)
 
-        // Set the adapter for the ListView
+
         listView.adapter = adapter
 
-        // Set click listeners for the ListView items
+
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedQuote = favoriteQuotes[position]
             showDeleteConfirmationDialog(selectedQuote)
         }
 
         deleteButton.setOnClickListener {
-            // Check if a quote is selected for deletion
+
             if (favoriteQuotes.isNotEmpty()) {
                 val selectedQuote = favoriteQuotes[0] // Delete the first quote
                 showDeleteConfirmationDialog(selectedQuote)
@@ -65,11 +65,10 @@ class FavoritesActivity : AppCompatActivity() {
         alertDialog.setTitle("Confirm Delete")
         alertDialog.setMessage("Are you sure you want to delete this quote?")
         alertDialog.setPositiveButton("Delete") { _, _ ->
-            // Delete the selected quote from SharedPreferences
+
             val sharedPreferences: SharedPreferences = getSharedPreferences("MyQuotes", MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-            // Determine the quote type from the selectedQuote and remove it
             if (quote.startsWith("Motivational Quote")) {
                 editor.remove("Motivational_quote")
             } else if (quote.startsWith("Funny Quote")) {
@@ -80,7 +79,6 @@ class FavoritesActivity : AppCompatActivity() {
 
             editor.apply()
 
-            // Remove the deleted quote from the list and refresh the ListView
             favoriteQuotes.remove(quote)
             refreshListView()
             Toast.makeText(this, "Quote deleted.", Toast.LENGTH_SHORT).show()
@@ -92,7 +90,6 @@ class FavoritesActivity : AppCompatActivity() {
     }
 
     private fun refreshListView() {
-        // Refresh the ListView with the updated quote list after deletion
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, favoriteQuotes)
         listView.adapter = adapter
     }
