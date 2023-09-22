@@ -72,7 +72,7 @@ class FavoritesActivity : AppCompatActivity() {
                 Toast.makeText(this, "No quotes available to delete.", Toast.LENGTH_SHORT).show()
             }
         }
-        updateFavoritesButtonState()
+
         favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
     }
 
@@ -111,10 +111,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         listView.adapter = adapter
     }
-    private fun updateFavoritesButtonState() {
 
-        favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
-    }
 
     private fun formatTimestamp(timestamp: Long): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())

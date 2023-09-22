@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun startQuotesActivity(quoteType: String) {
         val intent = Intent(this, QuotesActivity::class.java)
         intent.putExtra("quoteType", quoteType)
@@ -49,4 +48,5 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, FavoritesActivity::class.java)
         startActivity(intent)
     }
+
 }
