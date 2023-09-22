@@ -89,12 +89,5 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"/>
-    <TextView
-        android:id="@+id/checkGameStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
+
 </LinearLayout>
