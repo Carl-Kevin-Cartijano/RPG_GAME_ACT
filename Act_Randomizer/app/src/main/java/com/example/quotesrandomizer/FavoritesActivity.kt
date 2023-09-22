@@ -72,6 +72,7 @@ class FavoritesActivity : AppCompatActivity() {
                 Toast.makeText(this, "No quotes available to delete.", Toast.LENGTH_SHORT).show()
             }
         }
+        updateFavoritesButtonState()
         favoritesButton.isEnabled = favoriteQuotes.isNotEmpty()
     }
 
@@ -107,7 +108,7 @@ class FavoritesActivity : AppCompatActivity() {
             R.id.quoteTextView,
             favoriteQuotes.map { it.quote }
         )
-        updateFavoritesButtonState()
+
         listView.adapter = adapter
     }
     private fun updateFavoritesButtonState() {
